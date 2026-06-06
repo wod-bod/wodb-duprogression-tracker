@@ -676,6 +676,94 @@
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+    /* ── PRINT BUTTON ── */
+    .print-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 12px; border-radius: 8px;
+      background: rgba(255,255,255,0.06); border: 1px solid var(--border-2);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--gray-2);
+      transition: background 0.15s, color 0.15s;
+    }
+    .print-btn:active { background: rgba(255,255,255,0.12); color: var(--white); }
+    .print-btn svg { width: 13px; height: 13px; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      body { background: #fff !important; color: #111 !important; }
+      #setup-screen, .bottom-nav, .fab, .sheet-backdrop, .sheet,
+      .celebrate-backdrop, #confetti, .toast, .session-delete, .print-btn { display: none !important; }
+      .app-header {
+        position: static !important; background: #fff !important;
+        border-bottom: 2px solid #111 !important; backdrop-filter: none !important;
+        padding: 12px 0 10px !important;
+      }
+      .header-brand { color: #111 !important; font-size: 1rem !important; }
+      .header-brand .dot { color: #fb5000 !important; }
+      .header-email { color: #555 !important; max-width: none !important; }
+      main.app-body { padding: 16px 0 0 !important; overflow: visible !important; }
+      .tab-content { display: block !important; }
+      .hero-card {
+        background: #f5f5f5 !important; border: 1px solid #ddd !important;
+        break-inside: avoid;
+      }
+      .hero-card::before { display: none; }
+      .hero-eyebrow { color: #fb5000 !important; }
+      .hero-title .num { color: #fb5000 !important; }
+      .hero-formula { color: #111 !important; }
+      .hero-desc { color: #444 !important; }
+      .step-dot { background: #eee !important; border-color: #ccc !important; color: #555 !important; }
+      .step.passed .step-dot { background: #d1faf3 !important; border-color: #00a388 !important; color: #006b57 !important; }
+      .step.current .step-dot { background: #fb5000 !important; border-color: #fb5000 !important; color: #fff !important; box-shadow: none !important; animation: none !important; }
+      .step-label { color: #666 !important; }
+      .step.current .step-label { color: #111 !important; }
+      .step.passed .step-label { color: #00a388 !important; }
+      .step-line { background: #ddd !important; }
+      .step-line.filled { background: #00a388 !important; }
+      .section-label { color: #666 !important; border-color: #ddd !important; }
+      .section-label .count { color: #333 !important; }
+      .session {
+        background: #fafafa !important; border-color: #ddd !important;
+        break-inside: avoid;
+      }
+      .session.passed { border-color: #a7f3e4 !important; background: #f0fefb !important; }
+      .session-line1 { color: #111 !important; }
+      .session-pill { background: #d1faf3 !important; color: #006b57 !important; }
+      .session-line2 { color: #666 !important; }
+      .session-notes { color: #444 !important; }
+      .empty { background: #f5f5f5 !important; border-color: #ddd !important; }
+      .empty-title { color: #333 !important; }
+      .empty-sub { color: #777 !important; }
+      .pr-hero { background: #f5f5f5 !important; border-color: #ddd !important; break-inside: avoid; }
+      .pr-hero::before { display: none; }
+      .pr-hero-label { color: #00a388 !important; }
+      .pr-hero-num { color: #111 !important; }
+      .pr-hero-unit { color: #555 !important; }
+      .pr-hero-date { color: #777 !important; }
+      .pr-trend { background: #f5f5f5 !important; border-color: #ddd !important; }
+      .pr-trend-label { color: #666 !important; }
+      .pr-row { background: #fafafa !important; border-color: #ddd !important; break-inside: avoid; }
+      .pr-row.is-best { background: #f0fefb !important; border-color: #a7f3e4 !important; }
+      .pr-row-num { color: #111 !important; }
+      .pr-row-num small { color: #666 !important; }
+      .pr-row-meta { color: #666 !important; }
+      .pr-row-meta .date { color: #111 !important; }
+      .pr-row-best { background: #d1faf3 !important; color: #006b57 !important; }
+      .stat-card { background: #f5f5f5 !important; border-color: #ddd !important; break-inside: avoid; }
+      .stat-card-label { color: #666 !important; }
+      .stat-card-value { color: #111 !important; }
+      .stat-card-value .unit { color: #666 !important; }
+      .stat-card-sub { color: #777 !important; }
+      .bar-chart { background: #f5f5f5 !important; border-color: #ddd !important; }
+      .bar-chart-label { color: #666 !important; }
+      .bar-name { color: #444 !important; }
+      .bar-track { background: #e0e0e0 !important; }
+      .bar-val { color: #111 !important; }
+      .hero-graduated { background: #d1faf3 !important; border-color: #00a388 !important; color: #006b57 !important; }
+      @page { margin: 20mm; }
+    }
+
     /* ── TINY DETAILS ── */
     @media (min-width: 640px) {
       main.app-body { max-width: 540px; margin: 0 auto; }
@@ -719,7 +807,13 @@
     <div class="header-brand">
       WOD<span class="dot">·</span>BOD <span style="opacity:.5;margin:0 4px">·</span> Tracker
     </div>
-    <div class="header-email" id="header-email"></div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="header-email" id="header-email"></div>
+      <button class="print-btn" onclick="window.print()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print
+      </button>
+    </div>
   </header>
 
   <main class="app-body">
