@@ -692,10 +692,14 @@
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       @page { size: letter; margin: 15mm; }
-      body { background: #fff !important; }
+      html, body { background: #fff !important; }
       #setup-screen, #main-app, .sheet-backdrop, .sheet,
       .celebrate-backdrop, #confetti, .toast { display: none !important; }
-      #print-view { display: block !important; }
+      #print-view { display: block !important; background: #fff !important; }
+      .pv-section { background: #fff !important; }
+      .pv-instruction-box { background: #f5f5f5 !important; }
+      .pv-table th { color: #fff !important; }
+      .pv-passed-row { background: #fff !important; color: #111 !important; }
     }
 
     /* ════════════════════════════════════════════
