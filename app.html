@@ -691,98 +691,107 @@
     /* ── PRINT STYLES ── */
     @media print {
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-      body { background: #fff !important; color: #111 !important; }
-      #setup-screen, .bottom-nav, .fab, .sheet-backdrop, .sheet,
-      .celebrate-backdrop, #confetti, .toast, .session-delete, .print-btn { display: none !important; }
-      .app-header {
-        position: static !important; background: #fff !important;
-        border-bottom: 2px solid #111 !important; backdrop-filter: none !important;
-        padding: 12px 0 10px !important;
-      }
-      .header-brand { color: #111 !important; font-size: 1rem !important; }
-      .header-brand .dot { color: #fb5000 !important; }
-      .header-email { color: #555 !important; max-width: none !important; }
-      main.app-body { padding: 16px 0 0 !important; overflow: visible !important; }
-      .tab-content { display: block !important; }
-      .hero-card {
-        background: #f5f5f5 !important; border: 1px solid #ddd !important;
-        break-inside: avoid;
-      }
-      .hero-card::before { display: none; }
-      .hero-eyebrow { color: #fb5000 !important; }
-      .hero-title .num { color: #fb5000 !important; }
-      .hero-formula { color: #111 !important; }
-      .hero-desc { color: #444 !important; }
-      .step-dot { background: #eee !important; border-color: #ccc !important; color: #555 !important; }
-      .step.passed .step-dot { background: #d1faf3 !important; border-color: #00a388 !important; color: #006b57 !important; }
-      .step.current .step-dot { background: #fb5000 !important; border-color: #fb5000 !important; color: #fff !important; box-shadow: none !important; animation: none !important; }
-      .step-label { color: #666 !important; }
-      .step.current .step-label { color: #111 !important; }
-      .step.passed .step-label { color: #00a388 !important; }
-      .step-line { background: #ddd !important; }
-      .step-line.filled { background: #00a388 !important; }
-      .section-label { color: #666 !important; border-color: #ddd !important; }
-      .section-label .count { color: #333 !important; }
-      .session {
-        background: #fafafa !important; border-color: #ddd !important;
-        break-inside: avoid;
-      }
-      .session.passed { border-color: #a7f3e4 !important; background: #f0fefb !important; }
-      .session-line1 { color: #111 !important; }
-      .session-pill { background: #d1faf3 !important; color: #006b57 !important; }
-      .session-line2 { color: #666 !important; }
-      .session-notes { color: #444 !important; }
-      .empty { background: #f5f5f5 !important; border-color: #ddd !important; }
-      .empty-title { color: #333 !important; }
-      .empty-sub { color: #777 !important; }
-      .pr-hero { background: #f5f5f5 !important; border-color: #ddd !important; break-inside: avoid; }
-      .pr-hero::before { display: none; }
-      .pr-hero-label { color: #00a388 !important; }
-      .pr-hero-num { color: #111 !important; }
-      .pr-hero-unit { color: #555 !important; }
-      .pr-hero-date { color: #777 !important; }
-      .pr-trend { background: #f5f5f5 !important; border-color: #ddd !important; }
-      .pr-trend-label { color: #666 !important; }
-      .pr-row { background: #fafafa !important; border-color: #ddd !important; break-inside: avoid; }
-      .pr-row.is-best { background: #f0fefb !important; border-color: #a7f3e4 !important; }
-      .pr-row-num { color: #111 !important; }
-      .pr-row-num small { color: #666 !important; }
-      .pr-row-meta { color: #666 !important; }
-      .pr-row-meta .date { color: #111 !important; }
-      .pr-row-best { background: #d1faf3 !important; color: #006b57 !important; }
-      .stat-card { background: #f5f5f5 !important; border-color: #ddd !important; break-inside: avoid; }
-      .stat-card-label { color: #666 !important; }
-      .stat-card-value { color: #111 !important; }
-      .stat-card-value .unit { color: #666 !important; }
-      .stat-card-sub { color: #777 !important; }
-      .bar-chart { background: #f5f5f5 !important; border-color: #ddd !important; }
-      .bar-chart-label { color: #666 !important; }
-      .bar-name { color: #444 !important; }
-      .bar-track { background: #e0e0e0 !important; }
-      .bar-fill { background: #fb5000 !important; }
-      .bar-fill.passed { background: #00a388 !important; }
-      .bar-val { color: #111 !important; }
-      .hero-graduated { background: #d1faf3 !important; border-color: #00a388 !important; color: #006b57 !important; }
-
-      /* Print-only section dividers between tabs */
-      .print-section-break {
-        display: block !important;
-        margin: 28px 0 14px;
-        padding-bottom: 8px;
-        border-bottom: 2px solid #111;
-        font-family: 'Barlow Condensed', sans-serif;
-        font-weight: 900;
-        font-size: 1rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #111;
-      }
-
-      @page { margin: 20mm; }
+      @page { size: letter; margin: 15mm; }
+      body { background: #fff !important; }
+      #setup-screen, #main-app, .sheet-backdrop, .sheet,
+      .celebrate-backdrop, #confetti, .toast { display: none !important; }
+      #print-view { display: block !important; }
     }
 
-    /* ── PRINT SECTION BREAKS (hidden on screen) ── */
-    .print-section-break { display: none; }
+    /* ════════════════════════════════════════════
+       PRINT VIEW (hidden on screen)
+       ════════════════════════════════════════════ */
+    #print-view { display: none; }
+
+    .pv-header {
+      display: flex; flex-direction: column;
+      border-bottom: 2.5px solid #111;
+      padding-bottom: 10px; margin-bottom: 20px;
+      font-family: 'DM Sans', sans-serif; color: #111;
+    }
+    .pv-brand {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 22pt; letter-spacing: 0.14em; text-transform: uppercase;
+      line-height: 1;
+    }
+    .pv-orange { color: #fb5000; }
+    .pv-subtitle {
+      font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #555; font-weight: 600; margin-top: 3px;
+    }
+    .pv-athlete {
+      font-size: 9pt; color: #333; margin-top: 8px; font-weight: 500;
+    }
+
+    .pv-section { break-after: page; }
+    .pv-last { break-after: auto; }
+
+    .pv-sec-header {
+      display: flex; align-items: baseline; gap: 10px;
+      border-left: 5px solid #fb5000;
+      padding-left: 10px; margin-bottom: 8px;
+    }
+    .pv-p-num {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 26pt; color: #fb5000; line-height: 1;
+    }
+    .pv-p-title {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 20pt; color: #111; letter-spacing: 0.05em; line-height: 1;
+    }
+
+    .pv-instruction-box {
+      background: #f5f5f5; border: 1px solid #ccc;
+      border-left: 3px solid #00a388;
+      padding: 9px 13px; margin-bottom: 10px;
+    }
+    .pv-instr-goal {
+      font-size: 8pt; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #00a388; margin-bottom: 3px;
+    }
+    .pv-instr-main {
+      font-size: 10.5pt; font-weight: 700; color: #111; margin-bottom: 4px;
+    }
+    .pv-instr-pass {
+      font-size: 8pt; color: #666;
+      border-top: 1px solid #ddd; padding-top: 4px; margin-top: 4px;
+    }
+
+    .pv-table {
+      width: 100%; border-collapse: collapse;
+      font-family: 'DM Sans', sans-serif; font-size: 9pt;
+      margin-bottom: 8px;
+    }
+    .pv-table thead tr { background: #111; color: #fff; }
+    .pv-table th {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
+      font-size: 8pt; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 7px; text-align: left;
+      border: 1px solid #111;
+    }
+    .pv-table td {
+      padding: 0 7px; border: 1px solid #d0d0d0;
+      height: 26px; vertical-align: middle; color: #444;
+    }
+    .pv-table tbody tr:nth-child(even) { background: #fafafa; }
+    .pv-table tbody tr:nth-child(odd)  { background: #fff; }
+
+    .pv-col-num  { width: 24px; text-align: center; color: #999; font-size: 8pt; }
+    .pv-col-date { width: 76px; }
+    .pv-col-sets { width: 54px; text-align: center; color: #aaa; font-size: 8.5pt; }
+    .pv-col-att  { width: 62px; }
+    .pv-col-pass { width: 40px; text-align: center; font-size: 12pt; color: #333; }
+    /* .pv-col-notes fills remaining width */
+
+    .pv-passed-row {
+      border: 1.5px solid #111; padding: 7px 14px;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 12pt; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #111; display: flex; align-items: center; gap: 12px;
+    }
+    .pv-passed-label { flex: 1; }
+    .pv-passed-date { font-size: 10pt; font-weight: 400; letter-spacing: 0; text-transform: none; }
+    .pv-passed-line { border-bottom: 1.5px solid #111; display: inline-block; width: 160px; margin-left: 6px; }
 
     /* ── TINY DETAILS ── */
     @media (min-width: 640px) {
@@ -874,8 +883,6 @@
 
     </section>
 
-    <div class="print-section-break">Personal Records</div>
-
     <!-- ═══════ TAB: PRs ═══════ -->
     <section id="tab-prs" class="tab-content hidden">
 
@@ -906,8 +913,6 @@
       </div>
 
     </section>
-
-    <div class="print-section-break">Stats</div>
 
     <!-- ═══════ TAB: STATS ═══════ -->
     <section id="tab-stats" class="tab-content hidden">
@@ -1052,7 +1057,80 @@
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
+<!-- Print View (hidden on screen, shown in @media print) -->
+<div id="print-view"></div>
+
 <script>
+// ═══════════════════════════════════════════════════
+// PRINT VIEW
+// ═══════════════════════════════════════════════════
+const PRINT_DRILLS = [
+  { num: 1, title: 'Setup',     drill: '1–5 single unders + 1 double under' },
+  { num: 2, title: 'Build',     drill: '2× [1–5 single unders + 1 double under]' },
+  { num: 3, title: 'Alternate', drill: '1–5 single unders + 1 double under + 1 single under + 1 double under' },
+  { num: 4, title: 'Double-Up', drill: '1–5 single unders + 2 double unders' },
+  { num: 5, title: 'Triple-Up', drill: '1–5 single unders + 3 double unders' },
+  { num: 6, title: 'Mastery',   drill: '1–5 single unders + 4–10 double unders' },
+];
+
+function buildPrintView() {
+  const container = document.getElementById('print-view');
+
+  const header = `
+    <div class="pv-header">
+      <div class="pv-brand">WOD <span class="pv-orange">·</span> BOD <span class="pv-orange">·</span> METHOD</div>
+      <div class="pv-subtitle">Double Under Progression Tracker</div>
+      <div class="pv-athlete">Athlete: <span id="print-athlete-email">___________________________</span></div>
+    </div>`;
+
+  const sections = PRINT_DRILLS.map((p, idx) => {
+    const isLast = idx === PRINT_DRILLS.length - 1;
+    let rows = '';
+    for (let i = 1; i <= 15; i++) {
+      rows += `<tr>
+        <td class="pv-col-num">${i}</td>
+        <td class="pv-col-date"></td>
+        <td class="pv-col-sets">__ / 10</td>
+        <td class="pv-col-att"></td>
+        <td class="pv-col-pass">□</td>
+        <td class="pv-col-notes"></td>
+      </tr>`;
+    }
+    return `
+      <div class="pv-section${isLast ? ' pv-last' : ''}">
+        <div class="pv-sec-header">
+          <span class="pv-p-num">P${p.num}</span>
+          <span class="pv-p-title">${p.title.toUpperCase()}</span>
+        </div>
+        <div class="pv-instruction-box">
+          <div class="pv-instr-goal">10 sets of:</div>
+          <div class="pv-instr-main">${p.drill}</div>
+          <div class="pv-instr-pass">Pass = complete 10/10 sets in ≤ 12 attempts</div>
+        </div>
+        <table class="pv-table">
+          <thead><tr>
+            <th class="pv-col-num">#</th>
+            <th class="pv-col-date">Date</th>
+            <th class="pv-col-sets">Sets</th>
+            <th class="pv-col-att">Attempts</th>
+            <th class="pv-col-pass">Pass ✓</th>
+            <th class="pv-col-notes">Notes</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        <div class="pv-passed-row">
+          <span>□</span>
+          <span class="pv-passed-label">Passed</span>
+          <span class="pv-passed-date">Date: <span class="pv-passed-line"></span></span>
+        </div>
+      </div>`;
+  }).join('');
+
+  container.innerHTML = header + sections;
+}
+
+buildPrintView();
+
 // ═══════════════════════════════════════════════════
 // DATA
 // ═══════════════════════════════════════════════════
@@ -1150,6 +1228,8 @@ function renderAll() {
 function renderHeader() {
   const el = document.getElementById('header-email');
   if (STATE.email) el.textContent = STATE.email;
+  const printEl = document.getElementById('print-athlete-email');
+  if (printEl && STATE.email) printEl.textContent = STATE.email;
 }
 
 function renderHero() {
