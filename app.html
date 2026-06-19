@@ -759,10 +759,30 @@
       .bar-chart-label { color: #666 !important; }
       .bar-name { color: #444 !important; }
       .bar-track { background: #e0e0e0 !important; }
+      .bar-fill { background: #fb5000 !important; }
+      .bar-fill.passed { background: #00a388 !important; }
       .bar-val { color: #111 !important; }
       .hero-graduated { background: #d1faf3 !important; border-color: #00a388 !important; color: #006b57 !important; }
+
+      /* Print-only section dividers between tabs */
+      .print-section-break {
+        display: block !important;
+        margin: 28px 0 14px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #111;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 900;
+        font-size: 1rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #111;
+      }
+
       @page { margin: 20mm; }
     }
+
+    /* ── PRINT SECTION BREAKS (hidden on screen) ── */
+    .print-section-break { display: none; }
 
     /* ── TINY DETAILS ── */
     @media (min-width: 640px) {
@@ -854,6 +874,8 @@
 
     </section>
 
+    <div class="print-section-break">Personal Records</div>
+
     <!-- ═══════ TAB: PRs ═══════ -->
     <section id="tab-prs" class="tab-content hidden">
 
@@ -884,6 +906,8 @@
       </div>
 
     </section>
+
+    <div class="print-section-break">Stats</div>
 
     <!-- ═══════ TAB: STATS ═══════ -->
     <section id="tab-stats" class="tab-content hidden">
